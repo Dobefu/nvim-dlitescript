@@ -1,0 +1,3 @@
+[submodule "tree-sitter-dlitescript"]
+	path = tree-sitter-dlitescript
+	url = https://github.com/Dobefu/tree-sitter-dlitescript.git
