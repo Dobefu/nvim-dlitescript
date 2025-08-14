@@ -11,7 +11,6 @@ A NeoVim plugin that adds syntax highlighting for DLiteScript.
 
 - NeoVim 0.8+
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [tree-sitter-dlitescript](../tree-sitter-dlitescipt) parser (auto-installed if configured)
 
 ## Installation
 
