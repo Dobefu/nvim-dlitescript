@@ -12,6 +12,12 @@ local default_config = {
     enable = false,
   },
   auto_install = true,
+  lsp = {
+    enable = true,
+    cmd = { 'dlitescript', 'lsp', '--stdio' },
+    root_markers = { '.git' },
+    settings = {},
+  },
 }
 
 ---@param opts table|nil
@@ -61,6 +67,18 @@ M.setup = function(opts)
       vim.opt_local.expandtab = true
     end,
   })
+
+  if config.lsp.enable then
+    vim.lsp.config['dlitescript'] = {
+      cmd = config.lsp.cmd,
+      filetypes = { 'dlitescript' },
+      root_markers = { '.git' },
+      settings = config.lsp.settings,
+      capabilities = vim.lsp.protocol.make_client_capabilities(),
+    }
+
+    vim.lsp.enable('dlitescript')
+  end
 end
 
 return M
