@@ -24,6 +24,10 @@ local default_config = {
     run_on_save = true,
     run_on_change = false,
   },
+  format = {
+    enable = true,
+    cmd = { 'dlitescript', 'fmt', '$1' },
+  },
 }
 
 ---@param opts table|nil
@@ -91,6 +95,11 @@ M.setup = function(opts)
     local lint_namespace = vim.api.nvim_create_namespace("dlitescript-lint")
 
     linter.setup(config, lint_namespace)
+  end
+
+  if config.format.enable then
+    local formatter = require("nvim-dlitescript.formatter")
+    formatter.setup(config)
   end
 end
 
