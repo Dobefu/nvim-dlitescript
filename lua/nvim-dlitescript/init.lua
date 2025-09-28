@@ -18,6 +18,12 @@ local default_config = {
     root_markers = { '.git' },
     settings = {},
   },
+  lint = {
+    enable = true,
+    cmd = { 'dlitescript', 'lint', '$1' },
+    run_on_save = true,
+    run_on_change = false,
+  },
 }
 
 ---@param opts table|nil
@@ -78,6 +84,13 @@ M.setup = function(opts)
     }
 
     vim.lsp.enable('dlitescript')
+  end
+
+  if config.lint.enable then
+    local linter = require("nvim-dlitescript.linter")
+    local lint_namespace = vim.api.nvim_create_namespace("dlitescript-lint")
+
+    linter.setup(config, lint_namespace)
   end
 end
 
